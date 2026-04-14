@@ -67,7 +67,7 @@ Modifica la funzione in creaLanciaDado(), che restituisce una closure
 
 function lanciaDado() {
     const promessa = new Promise((resolve, reject) => {
-
+        console.log("Sto lanciando il dado...")
         const numeroDado = Math.floor(Math.random() * 6) + 1;
         setTimeout(() => {
             resolve(numeroDado)
