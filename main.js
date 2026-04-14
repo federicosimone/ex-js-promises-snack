@@ -22,21 +22,23 @@ function getPostTitle(id) {
 }
 
 getPostTitle(4)
-    .then(obj => console.log(obj))
-    .catch(error => console.error(error));
+    .then(obj => console.log(`Il titolo del post è ${obj.title}`)) //qui sto passando il resolve == cosa fare se va a buon fine
+    .catch(error => console.error(error)); // qui sto passando il reject == cosa fare se non va a buon fine 
 
+function getPost(id) {
+    const promessa = new Promise((resolve, reject) => {
+        fetch(`https://dummyjson.com/posts/${id}`)
+            .then(response => response.json())  //qui sto recuperando i dati 
+            .then(obj => resolve(obj)) // qui sto dicendo con "resolve" che i dati sono pronti per l'uso e sono il mio resolve 
+            .catch(reject);
+    })
 
+    return promessa;
+}
 
-
-
-
-
-
-
-
-
-
-
+getPost(4)
+    .then(obj => console.log(obj)) //qui sto passando il resolve == cosa fare se va a buon fine
+    .catch(error => console.error(error)); // qu
 
 
 
