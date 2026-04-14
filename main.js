@@ -33,14 +33,14 @@ function getPost(id) {
         fetch(`https://dummyjson.com/posts/${id}`)
             .then(response => response.json())
             .then(post => fetch(`https://dummyjson.com/users/${post.userId}`))
-            .then(response => console.log(response.json()))
+            .then(response => resolve(response.json()))
             .catch(reject);
     })
 
     return promessa;
 }
 
-getPost(4)
+getPost(6)
     .then(obj => console.log(obj))
     .catch(error => console.error(error));
 
@@ -55,3 +55,22 @@ Crea la funzione lanciaDado() che restituisce una Promise che, dopo 3 secondi,
 🎯 Bonus: HOF con closure per memorizzare l'ultimo lancio
 Modifica la funzione in creaLanciaDado(), che restituisce una closure
  che memorizza l'ultimo risultato. Se il numero esce due volte di fila, stampa "Incredibile!".*/
+
+
+
+
+function lanciaDado() {
+    const promessa = new Promise((resolve, reject) => {
+
+        const numeroDado = Math.floor(Math.random() * 6) + 1;
+        setTimeout(() => {
+            resolve(numeroDado)
+        }, 3000)
+    })
+
+    return promessa
+}
+
+lanciaDado()
+    .then(num => console.log("E' uscito ", num))
+    .catch(err => console.err(err))
